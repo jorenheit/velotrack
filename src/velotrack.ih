@@ -1,0 +1,15 @@
+#include "velotrack.h"
+
+#include <QPushButton>
+#include <QGridLayout>
+#include <QSerialPort>
+#include <QSerialPortInfo>
+#include <QMessageBox>
+#include <QComboBox>
+#include <QLabel>
+#include <QSplashScreen>
+#include <qcustomplot.h>
+#include <cstdint>
+#include <fstream>
+
+#include <iostream> //debug

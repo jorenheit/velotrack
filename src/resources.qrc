@@ -1,0 +1,8 @@
+<!DOCTYPE RCC><RCC version="1.0">
+
+<qresource>
+    <file>img/play.png</file>
+    <file>img/download.png</file>
+    <file>img/splash.png</file>
+</qresource>
+</RCC>
