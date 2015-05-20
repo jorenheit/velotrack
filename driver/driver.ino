@@ -95,7 +95,7 @@ void record() // ISR
     buf[bufIdx++] = count;
     count = 0;
 
-    if (bufIdx == sizeof(buf) / sizeof(decltype(buf[0])))
+    if (bufIdx >= sizeof(buf) / sizeof(decltype(buf[0])))
         stop(CONFIRM_MEASUREMENT);
 }
 
