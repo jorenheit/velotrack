@@ -15,8 +15,8 @@
 */
 
 #include "TimerOne.h"
-#define RECORD_TIME 3000 // milliseconds
-#define RECORD_INTERVAL 4000 // microseconds
+#define RECORD_TIME 6000 // milliseconds
+#define RECORD_INTERVAL 2000 // microseconds
 #define RECORD_DELAY 500 // steps
 
 enum Code
@@ -56,8 +56,8 @@ enum Channels: byte
 };
 
 // Notification LED pins
-byte const readyLED = 4;
-byte const runningLED = 5;
+byte const readyLED = 5;
+byte const runningLED = 4;
 byte const onoffLED = 6;
 
 // Transition table for fast lookup
@@ -79,9 +79,9 @@ volatile int bufIdx = 0;
 template <byte channel>
 void handler() // ISR
 {
-    static constexpr byte pinBit[2] = {2, 3};
+    static constexpr byte pinBit[2] = {4, 5};
 
-    byte newState = (PIND & (1 << pinBit[channel])) 
+    byte newState = (PINE & (1 << pinBit[channel])) 
         ? state | (1 << channel)
         : state & ~(1 << channel);
 
