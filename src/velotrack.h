@@ -16,11 +16,12 @@ class VeloTrackMainWindow: public QMainWindow
 {
     Q_OBJECT
     
-    enum Commands
+    enum Command
     {
         START_MEASUREMENT = 0,
         STOP_MEASUREMENT = 1,
         TRANSFER_BUFFER = 2,
+        TRANSFER_TIME_RESOLUTION = 3,
     };
 
     enum Code
@@ -32,6 +33,7 @@ class VeloTrackMainWindow: public QMainWindow
     QVector<double> d_data;
     QByteArray d_raw;
     QSerialPort *d_serial;
+    uint16_t d_recordingInterval; // microseconds
 
     // GUI elements
     QComboBox   *d_portList;
@@ -56,9 +58,9 @@ private slots:
     void sendDownloadSignal();
     void saveData();
     void clearAll();
-    void transfer();
 
 private:
+    QByteArray requestData(Command command, size_t timeout = -1);
     void notifyError(QSerialPort::SerialPortError err);
     void processRaw();
     void updatePlot();

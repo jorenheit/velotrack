@@ -28,7 +28,8 @@ enum Code
 // Function declarations
 template <byte channel> void handler();
 void record();
-void transfer();
+void transfer_buffer();
+void transfer_time_resolution();
 void start();
 void stop(byte code = 0);
 void reset();
@@ -152,13 +153,23 @@ void reset()
     memset(buf, 0, sizeof(buf));
 }
 
-void transfer()
+void transfer_buffer()
 {
     if (running)
         return;
   
     // write buffer over serial line
     Serial.write(reinterpret_cast<byte*>(&buf[0]), sizeof(buf));
+}
+
+
+void transfer_time_resolution()
+{
+    if (running)
+        return;
+    
+    static uint16_t const val = RECORD_INTERVAL;
+    Serial.write(reinterpret_cast<byte const*>(&val), sizeof(val));
 }
 
 // Interaction with PC over serial connection
@@ -169,6 +180,7 @@ void takeAction(byte code)
         START_MEASUREMENT = 0,
         STOP_MEASUREMENT = 1,
         TRANSFER_BUFFER = 2,
+        TRANSFER_TIME_RESOLUTION = 3,
     };
 
     switch (code)
@@ -182,8 +194,11 @@ void takeAction(byte code)
         break;
         
     case TRANSFER_BUFFER:
-        transfer();
+        transfer_buffer();
         break;
+
+    case TRANSFER_TIME_RESOLUTION:
+        transfer_time_resolution();
 
     default:
         break;
