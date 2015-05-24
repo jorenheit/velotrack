@@ -9,7 +9,6 @@
 #include <QLabel>
 #include <QSplashScreen>
 #include <qcustomplot.h>
-#include <cstdint>
 #include <fstream>
 
 #include <iostream> //debug

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QVector>
 #include <QSerialPort>
+#include <cstdint>
 
 class QPushButton;
 class QCustomPlot;
