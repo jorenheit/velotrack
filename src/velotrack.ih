@@ -8,6 +8,7 @@
 #include <QComboBox>
 #include <QLabel>
 #include <QSplashScreen>
+#include <QFileInfo>
 #include <qcustomplot.h>
 #include <fstream>
 

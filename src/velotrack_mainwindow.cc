@@ -104,15 +104,20 @@ void VeloTrackMainWindow::showErrorBox(QString const &title, QString const &msg)
 
 void VeloTrackMainWindow::saveData()
 {
-    QString fname = QFileDialog::getSaveFileName(this, "Save Data", "", "Text Files (*.txt)");
+    static QString workingDirectory = "";
+
+    QString fname = QFileDialog::getSaveFileName(this, "Save Data", workingDirectory, 
+                                                 "Text Files (*.txt)");
+
     if (fname.isEmpty())
         return;
 
+    workingDirectory = QFileInfo(fname).absolutePath();
     std::ofstream file(fname.toStdString());
     if (!file)
         return showErrorBox("Error Opening File", 
                             "VeloTrack was unable to open this file for writing. " 
-                            "Make sure you have write permissions.");
+                            "Make sure you have write permissions at this location.");
 
     for (double val: d_data)
         file << val << '\n';

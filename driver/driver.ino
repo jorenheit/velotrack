@@ -13,11 +13,21 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 #include "TimerOne.h"
-#define RECORD_TIME 0 // milliseconds
-#define RECORD_INTERVAL 2000 // microseconds
-#define RECORD_DELAY 500 // steps
+
+enum User_Defined_Parameters
+{
+    // Change these parameters to modify the duration of a measurement
+    // (RECORD_TIME), the time-resolution (RECORD_INTERVAL) or the
+    // threshold that has to be exceeded before the measurement
+    // starts. For more information on these parameters, see the
+    // reference-manual.
+
+    RECORD_TIME = 6000,     // milliseconds
+    RECORD_INTERVAL = 2000, // microseconds
+    RECORD_DELAY = 500,     // steps
+};
+
 
 enum Code
 {
