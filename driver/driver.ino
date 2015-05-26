@@ -15,7 +15,7 @@
 */
 
 #include "TimerOne.h"
-#define RECORD_TIME 6000 // milliseconds
+#define RECORD_TIME 0 // milliseconds
 #define RECORD_INTERVAL 2000 // microseconds
 #define RECORD_DELAY 500 // steps
 
